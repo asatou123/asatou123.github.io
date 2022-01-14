@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1 class="text-center mt-3">Simple Replace</h1>
+    <h1 class="text-center mt-3">Simple Replace S</h1>
     <div class="ps-3 pe-3">
         <textarea class="w-100" id="source" rows="5" cols="50" placeholder="Place your character in here..."></textarea>
     </div>
@@ -42,8 +42,8 @@
         function replace() {
             let jsCopy = document.getElementById("source");
             dictionary = {
-                "“":"-",
-                "”":"-"
+                "“":"「",
+                "”":"」"
             },
                 string = jsCopy.value,
                 totalDic = Object.keys(dictionary).length;
