@@ -42,14 +42,12 @@
         function replace() {
             let jsCopy = document.getElementById("source");
             dictionary = {
-                "-kun":"君",
-                "-chan":"ちゃん",
-                "-sama":"様",
                 "和泉知尋":"Izumi Chihiro",
                 "和泉":"Izumi",
                 "Izumiくん":"Izumi-kun",
                 "Izumi君":"Izumi-kun",
                 "知尋":"Chihiro",
+                "Chihiroさん":"Chihiro-san",
                 "姉-san":"Nee-san",
                 "母-san":"Kaa-san",
                 "落とし物":"Lost Item",
@@ -57,13 +55,16 @@
                 "柴鳳":"Shibahou",
                 "西崎李狐":"Nishizaki Riko",
                 "西崎":"Nishizaki",
+                "Nishizakiさん":"Nishizaki-san",
                 "李狐":"Riko",
+                "Rikoちゃん":"Riko-chan",
                 "神代悠希":"Kamishiro Yuuki",
                 "神代":"Kamishiro",
                 "Kamishiro君":"Kamishiro-kun",
                 "悠希":"Yuuki",
                 "高槻愛華":"Takatsuki Aika",
                 "高槻":"Takatsuki",
+                "Takatsukiさん":"Takatsuki-san",
                 "愛華":"Aika",
                 "深海真里亜":"Fukami Maria",
                 "深海":"Fukami",
@@ -74,7 +75,9 @@
                 "睡眠効果の促進":"Acceleration of Sleep Effect",
                 "御宿華":"Mishuku Hana",
                 "御宿":"Mishuku",
-                "華":"Hana"
+                "Mishukuさん":"Mishuku-san",
+                "華":"Hana",
+                "Hanaちゃん":"Hana-chan"
             },
                 string = jsCopy.value,
                 totalDic = Object.keys(dictionary).length;
