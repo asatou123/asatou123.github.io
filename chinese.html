@@ -1,264 +1,300 @@
 <html>
+	<head>
+		<title>Chinese replace character</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	</head>
+	<body>
+		<h1 class="text-center mt-3">Chinese Replace</h1>
+		<div class="ps-3 pe-3">
+			<textarea class="w-100" id="source" rows="8" cols="50" placeholder="Place your character in here..."></textarea>
+		</div>
+		<div class="mt-3 text-center">
+			<button type="button" class="btn btn-warning btn-lg btn-block w-25 ms-2 mb-2" onclick="eraseText();">Clear</button>
+		</div>
+		<div class="text-center">
+			<button type="button" class="btn btn-secondary btn-lg btn-block w-25 ms-2" onclick="paste();">Paste</button>
+			<button type="button" class="btn btn-success btn-lg btn-block w-25 ms-2" onclick="replace()">Replace</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block w-25 ms-2" onclick="copy();">Copy</button>
+		</div>
+		<hr />
+		<hr />
+		<div class="text-center">
+			<a href="/earh.html">Ephemeral</a> | <a href="/ck.html">Confinement</a> | <a href="/wizard.html">Wizard</a> | <a href="/replace.html">Finishing</a>
+		</div>
+		<script>
+			async function paste() {
+				var jsCopy = document.getElementById("source");
+				var copyValue = await navigator.clipboard.readText();
+				jsCopy.value = copyValue;
+			}
 
-<head>
-    <title>Chinese replace character</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
+			function copy() {
+				var jsCopy = document.getElementById("source");
+				jsCopy.select();
+				jsCopy.setSelectionRange(0, 99999);
+				navigator.clipboard.writeText(jsCopy.value);
+			}
 
-<body>
-    <h1 class="text-center mt-3">Chinese Replace</h1>
-    <div class="ps-3 pe-3">
-        <textarea class="w-100" id="source" rows="8" cols="50" placeholder="Place your character in here..."></textarea>
-    </div>
-    <div class="mt-3 text-center">
-        <button type="button" class="btn btn-warning btn-lg btn-block w-25 ms-2 mb-2" onclick="eraseText();">Clear</button>
-    </div>
-    <div class="text-center">
-        <button type="button" class="btn btn-secondary btn-lg btn-block w-25 ms-2" onclick="paste();">Paste</button>
-        <button type="button" class="btn btn-success btn-lg btn-block w-25 ms-2" onclick="replace()">Replace</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block w-25 ms-2" onclick="copy();">Copy</button>
-    </div>
-    <hr/><hr/>
-	<div class="text-center"><a href="/earh.html">Ephemeral</a> | <a href="/ck.html">Confinement</a> | <a href="/wizard.html">Wizard</a> | <a href="/replace.html">Finishing</a></div>
-    <script>
-        async function paste() {
-            var jsCopy = document.getElementById("source");
-            var copyValue = await navigator.clipboard.readText();
-            jsCopy.value = copyValue;
-        }
+			function eraseText() {
+				document.getElementById("source").value = "";
+			}
 
-        function copy() {
-            var jsCopy = document.getElementById("source");
-            jsCopy.select();
-            jsCopy.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(jsCopy.value);
-        }
-
-        function eraseText() {
-            document.getElementById("source").value = "";
-        }
-
-        function replace() {
-            let jsCopy = document.getElementById("source");
-            dictionary = {
-                "，": ", ",
-                "。": ". ",
-                "？": "? ",
-                "（": "(",
-                "：": ": ",
-                "……": "…",
-                "！": "! ",
-                "—": "...",
-                "  ": "",
-                "「": "“",
-                "」":"” ",
-		"”":"” ",
-                "、": ", ",
-                "【": "[",
-                "】": "]",
-                "『": "{",
-                "』": "}",
-                " }": "}",
-                "[!] [?] }":"!?}",
-                "[!] }":"!}",
-                "[?] }":"?}",
-                "[!] [?] ”":"!?”",
-                "[!] [?] 　":"!? ",
-                "[!][?] ”":"!?”",
-                "[!] [?]":"!?",
-                "[?] 　":"? ",
-                "[!] 　":"? ",
-                "[!] ”":"!”",
-                "[?] ”":"?”",
-                "蘇羽":"Suowa",
-                "苏羽":"Suowa",
-		"Suowa君":"Suowa-kun",
-                "七条天空":"Aria Shichijo",
-                "七条":"Shichijo",
-		"今井信女":"Nobue Imai",
-		"大蛇丸":"Orochimaru",
-		"餓狼":"Garou",
-		"東京吃貨":"Tokyo Ghoul",
-		"店長":"Cafe Manager",
-		"築城院真鑑":"Magane Chikujoin",
-		"創造主":"ReCreator",
-		"佐藤":"Satou",
-		"亞人":"Ajin",
-		"一方通行嗎":"Accelerator",
-		"魔禁":"Toaru",
-		"小室孝":"Komuro Takashi",
-		"宫本丽":"Miyamoto Rei",
-		"毒岛冴子":"Busujima Saeko",
-		"毒島冴子":"Busujima Saeko",
-		"毒島":"Busujima",
-		"高城沙耶":"Takagi Saya",
-		"平野耕太":"Hirano Kota",
-		"鞠川静香":"Marizawa Shizuka",
-		"井豪永":"Igou Hisashi",
-		"紫藤浩一":"Koichi Sido",
-		"希里爱丽丝":"Alice Maresato",
-		"零战":"Zeke",
-		"南里香":"Rika Minami",
-		"田岛":"Tajima",
-		"中冈麻美":"Asami Nakaoka",
-		"田丸浩":"Hiroshi Tamaru",
-		"幸平飯店":"Yukihira Restaurant",
-		"幸平創真":"Yukihira Souma",
-		"薙切繪里奈":"Erina Nakiri",
-		"田所惠":"Megumi Tadokoro",
-		"塔克米·阿爾迪尼":"Takumi Aldini",
-		"四宮小次郎":"Shinomiya Kojiro",
-		"水户鬱魅":"Ikumi Mito",
-		"水户郁魅":"Ikumi Mito",
-		"葉山亮":"Hayama Akira",
-		"黑木場涼":"Kurokiba Ryou",
-		"美作昴":"Mimasaka Subaru",
-		"一色慧":"Isshiki Satoshi",
-		"司瑛士":"Tsukasa Eisi",
-		"久我照紀":"Kuga Terunori",
-		"幸平珠子":"Yukihira Tamako",
-		"幸平城一郎":"Yukihira Joichirou",
-		"才波誠一郎":"Saiba Joichirou",
-		"遠月":"Totsuki",
-		"榊涼子":"Ryoko Sakaki",
-		"吉野悠姬":"Yoshino Yuuki",
-		"丸井善二":"Marui Zenj",
-		"伊武崎峻":"Ibusaki Shun",
-		"佐藤昭二":"Sato Shoji",
-		"青木大吾":"Daigo Aiko",
-		"大御堂文緒":"Fumio Daimido",
-		"新户緋沙子":"Hisako Arato",
-		"伊薩米·阿爾迪尼":"Isami Aldini",
-		"薙切愛麗絲":"Nakiri Alice",
-		"北條美代子":"Miyoko Hojou",
-		"貞冢奈緒":"Sadatsuka Nao",
-		"川島麗":"Kawashima Rei",
-		"紀之國寧寧":"Kinokuni Nene",
-		"小西寬一":"Konishi Kanichi",
-		"豪田林清志":"Goudabayashi Kiyoshi",
-		"睿山枝津也":"Eizan Etsuya",
-		"鏑木祥子":"Shoko Kaburagi",
-		"小林龍膽":"Kobayashi Rindo",
-		"女木島冬輔":"Meigijima Tousuke",
-		"茜久保桃":"Akanegakubo Momo",
-		"齋藤綜明":"Somei Saitou",
-		"薙切仙左衞門":"Nakiri Senzaemon",
-		"薙切薊":"Nakiri Azami",
-		"堂島銀":"Dojima Gin",
-		"汐見潤":"Shiomi Jun",
-		"水原冬美":"Fuyumi Mizuhara",
-		"乾日向子":"Inui Hinako",
-		"多納託梧桐田":"Donato Gotoida",
-		"角崎瀧":"Tsunozaki Taki",
-		"木久知園果":"Kikuchi Sonoka",
-		"羅蘭·沙佩爾":"Rolland Chapelle",
-		"才波朝陽":"Nakiri Asahi",
-		"薙切真凪":"Mana Nakiri",
-		"戶冢彩加":"Saika Totsuka",
-		"比企谷八幡":"Hikigaya Hachiman",
-		"雪ノ下雪乃":"Yukinoshita Yukino",
-		"由比ヶ浜結衣":"Yuigahama Yui",
-		"由比濱結衣":"Yuigahama Yui",
-		"濱結衣":"Yuigahama",
-		"由比濱":"Yuigahama",
-		"Yuigahama同學":"Yuigahama-san",
-		"總武高":"Sobu Highschool",
-		"葉山隼人":"Hayama Hayato",
-		"三浦優美子":"Miura Yumiko",
-		"海老名姫菜":"Ebina Hina",
-		"川崎沙希":"Kawasaki Saki",
-		"戸部翔":"Tobe Kakeru",
-		"平塚静":"Hiratsuka Shizuka",
-		"比企谷小町":"Hikigaya Komachi",
-		"材木座義輝":"Zaimokusa Yoshiteru",
-		"雪ノ下陽乃":"Yukinoshita Haruno",
-		"鶴見留美":"Tsurumi Rumi",
-		"城廻めぐり":"Shiromeguri Meguri",
-		"一色いろは":"Isshiki Iroha",
-		"折本かおり":"Orimoto Kaori",
-                "一色彩羽":"Isshiki Iroha",
-                "春香":"Haruka",
-                "林恩": "Rinn",
-                "千秋": "Chiaki",
-                "夜哉": "Yoruya",
-                "南家": "Minami Family",
-                "南": "Minami",
-                "赫斯缇亚": "Hestia",
-                "洛基": "Loki",
-                "娜洁希坦": "Najenda",
-                "斩赤红之瞳": "Akame ga Kill",
-                "赤瞳": "Akame",
-                "夜静": "Yorusei",
-                "吹雪": "Fubuki",
-                "龙卷": "Tatsumaki",
-                "杰诺斯": "Genos",
-                "迈特戴": "Might Duy",
-                "木叶": "Konoha",
-                "遁": "Release",
-                "写轮眼": "Sharingan",
-		"寫輪眼":"Sharingan",
-		"勾玉":"Tomoe",
-		"TomoeSharingan":"Tomoe Sharingan",
-                "万花筒": "Mangekyo",
-		"萬花筒":"Mangekyou",
-                "火影": "Hokage",
-                "鼬": "Itachi",
-                "妖精的尾巴": "Fairy Tail",
-                "气功": "Ki",
-                "牙密": "Yammy",
-                "织姬": "Orihime",
-                "虚白": "Zangetsu",
-                "为虚": "Hollow",
-                "涅茧利": "Mayuri",
-                "蓝染": "Aizen",
-                "空座町": "Karakura",
-                "碎蜂": "Soifon",
-                "破面": "Arrancar",
-                "乱菊": "Rangiku",
-                "獣神": "Tres Bestias",
-                "阿帕契": "Apacci",
-                "孙悟空": "Son Goku",
-                "胖虎": "Takeshi Goda",
-                "龙斗": "Ryuto",
-                "如龙": "Yakuza",
-                "梅园": "Umekoen",
-                "琉璃": "Ruri",
-                "神代": "Kamishiro",
-                "KamishiroRuri": "Kamishiro Ruri",
-                "小姐": "Young Lady",
-                "斋王": "Saio",
-                "十六夜同学": "Izayoi-san",
-                "十六夜": "Izayoi",
-                "舞衣": "Mai",
-                "IzayoiMai": "Izayoi Mai",
-                "猫屋敷兔丸": "Nekoyashiki Usamaru",
-                "猫屋敷": "Nekoyashiki",
-                "兔丸": "Usamaru",
-                "明智五郎": "Akechi Goro",
-                "明智": "Akechi",
-                "月见里": "Tsukimi",
-                "云雁": "Ungan",
-                "TsukimiUngan": "Tsukimi Ungan",
-                "高远": "Takato",
-                "正人": "Masato",
-                "TakatoMasato": "Takato Masato",
-                "沈默":"Chinmoku",
-                "开罐子":"Gacha",
-                "陆野":"Rikuno",
-                "凉风":"Suzuka"
-            },
-                string = jsCopy.value,
-                totalDic = Object.keys(dictionary).length;
-            for (let i = 0; i < totalDic; i++) {
-                x = Object.keys(dictionary)[i];
-                result = string.replace(new RegExp(x, "g"), Object.values(dictionary)[i]);
-                string = result;
-            }
-            jsCopy.value = result;
-            jsCopy.select();
-            jsCopy.setSelectionRange(0, 99999);
-        }
-    </script>
-</body>
+			function replace() {
+				let jsCopy = document.getElementById("source");
+				dictionary = {
+						"，": ", ",
+						"。": ". ",
+						"？": "? ",
+						"（": "(",
+						"：": ": ",
+						"……": "…",
+						"！": "! ",
+						"—": "...",
+						"  ": "",
+						"「": "“",
+						"」": "” ",
+						"”": "” ",
+						"、": ", ",
+						"【": "[",
+						"】": "]",
+						"『": "{",
+						"』": "}",
+						" }": "}",
+						"[!] [?] }": "!?}",
+						"[!] }": "!}",
+						"[?] }": "?}",
+						"[!] [?] ”": "!?”",
+						"[!] [?] 　": "!? ",
+						"[!][?] ”": "!?”",
+						"[!] [?]": "!?",
+						"[?] 　": "? ",
+						"[!] 　": "? ",
+						"[!] ”": "!”",
+						"[?] ”": "?”",
+						"蘇羽": "Suowa",
+						"苏羽": "Suowa",
+						"Suowa君": "Suowa-kun",
+						"喰種嗎": "Ghoul",
+						"赫子": "Kagune",
+						"金木研": "Kaneki Ken",
+						"永近英良": "Nagachika Hideyoshi",
+						"和修舊多宗太": "Kichimura Washuu",
+						"芳村功善": "Yoshimura Kuzen",
+						"四方蓮示": "Renji Yomo",
+						"有馬貴將": "Arima Kishou",
+						"亞門鋼太朗": "Koutarou Amon",
+						"鈴屋什造": "Juzo Suzuya",
+						"唄": "Uta",
+						"西尾錦": "Nishiki Nishio",
+						"月山習": "Shuu Tsukiyama",
+						"萬丈數一": "Banjou Ichi",
+						"古間圓兒": "Koma Enji",
+						"瓜江久生": "Urie Kuki",
+						"不知吟士": "Shirazu Ginshi",
+						"霧島董香": "Touka Kirishima",
+						"董香": "Kirishima",
+						"霧島": "Touka",
+						"神代利世": "Kamishiro Rize",
+						"神代": "Kamishiro",
+						"利世": "Rize",
+						"高槻泉": "Takatsuki Izumi",
+						"真户曉": "Mado Akira",
+						"笛口雛實": "Fueguchi Hinami",
+						"六月透": "Toru Mutsuki",
+						"米林才子": "Yonebayashi Saiko",
+						"入見萱": "Irimi Kaya",
+						"磷赫": "Kagune",
+						"七条天空": "Aria Shichijo",
+						"七条": "Shichijo",
+						"今井信女": "Nobue Imai",
+						"大蛇丸": "Orochimaru",
+						"餓狼": "Garou",
+						"東京吃貨": "Tokyo Ghoul",
+						"店長": "Cafe Manager",
+						"築城院真鑑": "Magane Chikujoin",
+						"創造主": "ReCreator",
+						"佐藤": "Satou",
+						"亞人": "Ajin",
+						"一方通行嗎": "Accelerator",
+						"一方通行": "Accelerator",
+						"魔禁": "Toaru",
+						"小室孝": "Komuro Takashi",
+						"宫本丽": "Miyamoto Rei",
+						"毒岛冴子": "Busujima Saeko",
+						"毒島冴子": "Busujima Saeko",
+						"毒島": "Busujima",
+						"高城沙耶": "Takagi Saya",
+						"平野耕太": "Hirano Kota",
+						"鞠川静香": "Marizawa Shizuka",
+						"井豪永": "Igou Hisashi",
+						"紫藤浩一": "Koichi Sido",
+						"希里爱丽丝": "Alice Maresato",
+						"零战": "Zeke",
+						"南里香": "Rika Minami",
+						"田岛": "Tajima",
+						"中冈麻美": "Asami Nakaoka",
+						"田丸浩": "Hiroshi Tamaru",
+						"千俵夏芽": "Sendawara Natsume",
+						"千俵織繪": "Sendawara Orie",
+						"夏芽": "Natsume",
+						"千俵": "Sendawara",
+						"幸平飯店": "Yukihira Restaurant",
+						"幸平創真": "Yukihira Souma",
+						"薙切繪里奈": "Erina Nakiri",
+						"田所惠": "Megumi Tadokoro",
+						"塔克米·阿爾迪尼": "Takumi Aldini",
+						"四宮小次郎": "Shinomiya Kojiro",
+						"水户鬱魅": "Ikumi Mito",
+						"水户郁魅": "Ikumi Mito",
+						"葉山亮": "Hayama Akira",
+						"黑木場涼": "Kurokiba Ryou",
+						"美作昴": "Mimasaka Subaru",
+						"一色慧": "Isshiki Satoshi",
+						"司瑛士": "Tsukasa Eisi",
+						"久我照紀": "Kuga Terunori",
+						"幸平珠子": "Yukihira Tamako",
+						"幸平城一郎": "Yukihira Joichirou",
+						"才波誠一郎": "Saiba Joichirou",
+						"遠月": "Totsuki",
+						"榊涼子": "Ryoko Sakaki",
+						"吉野悠姬": "Yoshino Yuuki",
+						"丸井善二": "Marui Zenj",
+						"伊武崎峻": "Ibusaki Shun",
+						"佐藤昭二": "Sato Shoji",
+						"青木大吾": "Daigo Aiko",
+						"大御堂文緒": "Fumio Daimido",
+						"新户緋沙子": "Hisako Arato",
+						"伊薩米·阿爾迪尼": "Isami Aldini",
+						"薙切愛麗絲": "Nakiri Alice",
+						"北條美代子": "Miyoko Hojou",
+						"貞冢奈緒": "Sadatsuka Nao",
+						"川島麗": "Kawashima Rei",
+						"紀之國寧寧": "Kinokuni Nene",
+						"小西寬一": "Konishi Kanichi",
+						"豪田林清志": "Goudabayashi Kiyoshi",
+						"睿山枝津也": "Eizan Etsuya",
+						"鏑木祥子": "Shoko Kaburagi",
+						"小林龍膽": "Kobayashi Rindo",
+						"女木島冬輔": "Meigijima Tousuke",
+						"茜久保桃": "Akanegakubo Momo",
+						"齋藤綜明": "Somei Saitou",
+						"薙切仙左衞門": "Nakiri Senzaemon",
+						"薙切薊": "Nakiri Azami",
+						"堂島銀": "Dojima Gin",
+						"汐見潤": "Shiomi Jun",
+						"水原冬美": "Fuyumi Mizuhara",
+						"乾日向子": "Inui Hinako",
+						"多納託梧桐田": "Donato Gotoida",
+						"角崎瀧": "Tsunozaki Taki",
+						"木久知園果": "Kikuchi Sonoka",
+						"羅蘭·沙佩爾": "Rolland Chapelle",
+						"才波朝陽": "Nakiri Asahi",
+						"薙切真凪": "Mana Nakiri",
+						"戶冢彩加": "Saika Totsuka",
+						"比企谷八幡": "Hikigaya Hachiman",
+						"雪ノ下雪乃": "Yukinoshita Yukino",
+						"由比ヶ浜結衣": "Yuigahama Yui",
+						"由比濱結衣": "Yuigahama Yui",
+						"濱結衣": "Yuigahama",
+						"由比濱": "Yuigahama",
+						"Yuigahama同學": "Yuigahama-san",
+						"總武高": "Sobu Highschool",
+						"葉山隼人": "Hayama Hayato",
+						"三浦優美子": "Miura Yumiko",
+						"海老名姫菜": "Ebina Hina",
+						"川崎沙希": "Kawasaki Saki",
+						"戸部翔": "Tobe Kakeru",
+						"平塚静": "Hiratsuka Shizuka",
+						"比企谷小町": "Hikigaya Komachi",
+						"材木座義輝": "Zaimokusa Yoshiteru",
+						"雪ノ下陽乃": "Yukinoshita Haruno",
+						"雪之下陽乃": "Yukinoshita Haruno",
+						"雪之下映奈": "Yukinoshita Eina",
+						"鶴見留美": "Tsurumi Rumi",
+						"城廻めぐり": "Shiromeguri Meguri",
+						"一色いろは": "Isshiki Iroha",
+						"折本かおり": "Orimoto Kaori",
+						"一色彩羽": "Isshiki Iroha",
+						"春香": "Haruka",
+						"林恩": "Rinn",
+						"千秋": "Chiaki",
+						"夜哉": "Yoruya",
+						"南家": "Minami Family",
+						"南": "Minami",
+						"赫斯缇亚": "Hestia",
+						"洛基": "Loki",
+						"娜洁希坦": "Najenda",
+						"斩赤红之瞳": "Akame ga Kill",
+						"赤瞳": "Akame",
+						"夜静": "Yorusei",
+						"吹雪": "Fubuki",
+						"龙卷": "Tatsumaki",
+						"杰诺斯": "Genos",
+						"迈特戴": "Might Duy",
+						"木叶": "Konoha",
+						"遁": "Release",
+						"写轮眼": "Sharingan",
+						"寫輪眼": "Sharingan",
+						"勾玉": "Tomoe",
+						"TomoeSharingan": "Tomoe Sharingan",
+						"万花筒": "Mangekyo",
+						"萬花筒": "Mangekyou",
+						"火影": "Hokage",
+						"鼬": "Itachi",
+						"妖精的尾巴": "Fairy Tail",
+						"气功": "Ki",
+						"牙密": "Yammy",
+						"织姬": "Orihime",
+						"虚白": "Zangetsu",
+						"为虚": "Hollow",
+						"涅茧利": "Mayuri",
+						"蓝染": "Aizen",
+						"空座町": "Karakura",
+						"碎蜂": "Soifon",
+						"破面": "Arrancar",
+						"乱菊": "Rangiku",
+						"獣神": "Tres Bestias",
+						"阿帕契": "Apacci",
+						"孙悟空": "Son Goku",
+						"胖虎": "Takeshi Goda",
+						"龙斗": "Ryuto",
+						"如龙": "Yakuza",
+						"梅园": "Umekoen",
+						"琉璃": "Ruri",
+						"神代": "Kamishiro",
+						"KamishiroRuri": "Kamishiro Ruri",
+						"斋王": "Saio",
+						"十六夜同学": "Izayoi-san",
+						"十六夜": "Izayoi",
+						"舞衣": "Mai",
+						"IzayoiMai": "Izayoi Mai",
+						"猫屋敷兔丸": "Nekoyashiki Usamaru",
+						"猫屋敷": "Nekoyashiki",
+						"兔丸": "Usamaru",
+						"明智五郎": "Akechi Goro",
+						"明智": "Akechi",
+						"月见里": "Tsukimi",
+						"云雁": "Ungan",
+						"TsukimiUngan": "Tsukimi Ungan",
+						"高远": "Takato",
+						"正人": "Masato",
+						"TakatoMasato": "Takato Masato",
+						"沈默": "Chinmoku",
+						"开罐子": "Gacha",
+						"陆野": "Rikuno",
+						"凉风": "Suzuka"
+					},
+					string = jsCopy.value,
+					totalDic = Object.keys(dictionary).length;
+				for (let i = 0; i < totalDic; i++) {
+					x = Object.keys(dictionary)[i];
+					result = string.replace(new RegExp(x, "g"), Object.values(dictionary)[i]);
+					string = result;
+				}
+				jsCopy.value = result;
+				jsCopy.select();
+				jsCopy.setSelectionRange(0, 99999);
+			}
+		</script>
+	</body>
