@@ -1,6 +1,9 @@
 function replace() {
     let jsCopy = document.getElementsByClassName("read_chapterDetail");
     dictionary = {
+        "高木秋人":"Takagi Akihito",
+        "秋人":"Akihito",
+        "亚城木梦叶":"Akijoki Yuka",
         "，": ", ",
         "。": ". ",
         "？": "? ",
