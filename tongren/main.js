@@ -1,5 +1,5 @@
 function replace() {
-    let jsCopy = document.getElementsByTagName("p");
+    let jsCopy = document.getElementsByClassName("read_chapterDetail");
     dictionary = {
         "，": ", ",
         "。": ". ",
@@ -11,7 +11,6 @@ function replace() {
         "—": "...",
         "  ": "",
         "「": "　“",
-        "“":"　“",
         "」": "” ",
         "”": "” ",
         "、": ", ",
@@ -31,6 +30,8 @@ function replace() {
         "[!] 　": "? ",
         "[!] ”": "!”",
         "[?] ”": "?”",
+        "! ! ! ":"!!!",
+        "[?] ! ":"?! ",
         "蘇羽": "Suowa",
         "苏羽": "Suowa",
         "Suowa君": "Suowa-kun",
@@ -284,13 +285,17 @@ function replace() {
         "赤練": "Akaneri",
         "南兔總": "Minami Usagi",
         "《":"[",
-        "》":"]"
+        "》":"]",
+        "<p>":"<p>　",
+        "! </p>":"!</p>",
+        "? </p>":"?</p>",
+        ". </p>":".</p>"
     },
         totalDic = Object.keys(dictionary).length;
     for (let i = 0; i < jsCopy.length; i++) {
         for (let j = 0; j < totalDic; j++) {
             x = Object.keys(dictionary)[j];
-            jsCopy[i].innerHTML = jsCopy[i].innerHTML.replace(new RegExp(x, "g"), Object.values(dictionary)[j]);
+            jsCopy[i].outerHTML = jsCopy[i].outerHTML.replace(new RegExp(x, "g"), Object.values(dictionary)[j]);
         }
     }
 }
