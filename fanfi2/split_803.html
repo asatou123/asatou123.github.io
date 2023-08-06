@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Chunk</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            margin-bottom: 10px;
+            font-size: 30px;
+            padding: 10px 20px;
+        }
+
+        div {
+            max-width: 100%;
+            overflow-wrap: break-word;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            
+            button {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="copy-button">Copy</button>
+    <div style="font-size:30px">
+        <a href="split_802.html" style="font-size:30px">Previous Page</a>
+        
+    </div>
+    <div>
+        <pre>Translate below chinese anime fanfic to English:
+人类被吃光将会是注定的结果。
+　　从这个层面来看，区区教授所造成的人类侧伤亡与红世魔王一比根本就不值一提。
+　　“什么事？”
+　　被右方招呼过来的影山身上根本就没有半点儿的紧张感，就跟午休时间上天台跟朋友吃饭聊天时的状态差不多，完全看不出就在刚刚他才捏死了一只教授乌鸦。
+　　“你跟他……”
+　　右方利用比自己还要小只的影山做掩护，悄悄地指了指后方还在撸空气的红世魔王。
+　　“哦，这位先生是猎人法利亚格尼，笼罩整个城市的这个结界就是他释放的，听他说这个结界可以防止其他人乱跑还能修复被损坏的建筑，我有点想学，猎人先生也说可以教我。”
+　　影山挠挠头，有点不好意思地说道。
+　　右方倒吸一口凉气。
+　　右方想了很多种可能性，唯独没有想过影山茂夫竟然能跟法利亚格尼成为师徒般的关系，这法利亚格尼不会是死了一次之后整个人都不对劲了吧？
+　　“对了，你碰到乙坂有宇了吗？我刚才看到系统消息提示上说他已经挂了。”
+　　完全不知道自己的行为到底多让右方震惊的影山继续问道。
+　　右方呆呆的点了点头，影山见状继续说道。
+　　“那就算我输。
+　　巨舰联盟组织该怎么申请进啊？”
+　　半响之后。
+　　【《盐中学》所属玩家“影山茂夫”加入《巨舰联盟》。】
+　　右方跟影山茂夫的打赌很简单，如果右方先找到乙坂有宇，那么影山茂夫就要加入巨舰联盟。
+　　如果影山茂夫先找到乙坂有宇，那右方就要请他在游戏里吃顿好的。
+　　比如说，寿司。
+　　不会转的那种……
+
+
+</pre>
+    </div>
+    <div>
+        <a href="split_802.html">Previous Page</a>
+        
+    </div>
+    <script>
+        const copyButton = document.getElementById("copy-button");
+        const chunkText = `Translate below chinese anime fanfic to English:
+人类被吃光将会是注定的结果。
+　　从这个层面来看，区区教授所造成的人类侧伤亡与红世魔王一比根本就不值一提。
+　　“什么事？”
+　　被右方招呼过来的影山身上根本就没有半点儿的紧张感，就跟午休时间上天台跟朋友吃饭聊天时的状态差不多，完全看不出就在刚刚他才捏死了一只教授乌鸦。
+　　“你跟他……”
+　　右方利用比自己还要小只的影山做掩护，悄悄地指了指后方还在撸空气的红世魔王。
+　　“哦，这位先生是猎人法利亚格尼，笼罩整个城市的这个结界就是他释放的，听他说这个结界可以防止其他人乱跑还能修复被损坏的建筑，我有点想学，猎人先生也说可以教我。”
+　　影山挠挠头，有点不好意思地说道。
+　　右方倒吸一口凉气。
+　　右方想了很多种可能性，唯独没有想过影山茂夫竟然能跟法利亚格尼成为师徒般的关系，这法利亚格尼不会是死了一次之后整个人都不对劲了吧？
+　　“对了，你碰到乙坂有宇了吗？我刚才看到系统消息提示上说他已经挂了。”
+　　完全不知道自己的行为到底多让右方震惊的影山继续问道。
+　　右方呆呆的点了点头，影山见状继续说道。
+　　“那就算我输。
+　　巨舰联盟组织该怎么申请进啊？”
+　　半响之后。
+　　【《盐中学》所属玩家“影山茂夫”加入《巨舰联盟》。】
+　　右方跟影山茂夫的打赌很简单，如果右方先找到乙坂有宇，那么影山茂夫就要加入巨舰联盟。
+　　如果影山茂夫先找到乙坂有宇，那右方就要请他在游戏里吃顿好的。
+　　比如说，寿司。
+　　不会转的那种……
+
+
+`;
+
+        copyButton.addEventListener("click", () => {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = chunkText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            alert("Text copied to clipboard!");
+        });
+    </script>
+</body>
+</html>
